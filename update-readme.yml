@@ -1,0 +1,64 @@
+name: 🐍 Auto-Update README
+
+on:
+  schedule:
+    # Runs every day at midnight UTC
+    - cron: "0 0 * * *"
+  workflow_dispatch: # Also allows manual trigger from GitHub UI
+  push:
+    branches:
+      - main
+
+jobs:
+  # ─── Job 1: Generate Snake Contribution Graph ───────────────────
+  snake-animation:
+    name: 🐍 Generate Contribution Snake
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Generate Snake SVG (dark + light)
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+
+      - name: Push snake SVGs to output branch
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ─── Job 2: Update Last-Updated Timestamp in README ─────────────
+  update-timestamp:
+    name: 🕐 Update README Timestamp
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Inject current UTC timestamp into README
+        run: |
+          TIMESTAMP=$(date -u "+%Y-%m-%d %H:%M UTC")
+          # Replace content between the marker comments
+          sed -i "s|<!-- LAST_UPDATED_START -->.*<!-- LAST_UPDATED_END -->|<!-- LAST_UPDATED_START -->\n> 🤖 *README auto-updated by GitHub Actions — **${TIMESTAMP}***\n<!-- LAST_UPDATED_END -->|" README.md
+
+      - name: Commit and push if README changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          # Only commit if something actually changed
+          git diff --cached --quiet || git commit -m "chore(readme): auto-update timestamp [skip ci]"
+          git push
