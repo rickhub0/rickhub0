@@ -2,12 +2,15 @@ name: 🐍 Auto-Update README
 
 on:
   schedule:
-    # Runs every day at midnight UTC
     - cron: "0 0 * * *"
-  workflow_dispatch: # Also allows manual trigger from GitHub UI
+  workflow_dispatch:
   push:
     branches:
       - main
+
+# ✅ FIX: Grant write access so the bot can push to the output branch
+permissions:
+  contents: write
 
 jobs:
   # ─── Job 1: Generate Snake Contribution Graph ───────────────────
@@ -47,6 +50,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          # ✅ FIX: Required so git push works after checkout
+          persist-credentials: true
 
       - name: Inject current UTC timestamp into README
         run: |
