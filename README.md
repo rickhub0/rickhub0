@@ -112,7 +112,7 @@ rickhub0@github:~/projects$ ./benglishify --demo
 
 <!-- Demo GIF — replace with your actual screen recording -->
 <!-- To record: use ScreenToGif or LICEcap, export as .gif, upload to /assets/benglishify-demo.gif -->
-> 📸 **Demo:** [Add a GIF here] — Record with [LICEcap](https://www.cockos.com/licecap/) & upload to `assets/benglishify-demo.gif`
+> 📸 **Demo:** [SOON] — Record with [LICEcap](https://www.cockos.com/licecap/) & upload to `assets/benglishify-demo.gif`
 
 </details>
 
@@ -222,10 +222,10 @@ rickhub0@github:~/projects$ ./sblock --target ".annoying-popup"
 
 ## `$ ping rickhub0`
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/rickhub0)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/iamsurajit)
 [![Twitter/X](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/rickhub0)
-[![Portfolio](https://img.shields.io/badge/Portfolio-00ff41?style=for-the-badge&logo=vercel&logoColor=black)](https://rickhub0.dev)
-[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your@email.com)
+[![Portfolio](https://img.shields.io/badge/Portfolio-00ff41?style=for-the-badge&logo=vercel&logoColor=black)](https://heysurajit.vercel.app/)
+[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:dassurajit839@gmail.com)
 
 <br>
 
